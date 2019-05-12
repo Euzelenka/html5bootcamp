@@ -1,0 +1,5 @@
+Add doctype to the previously created HTML documents. See what happens if you remove it.
+
+
+When i remove the 'doctype' and nothing happens. I proved it in the exercise 5 and 6.
+The pages wasnt change.
