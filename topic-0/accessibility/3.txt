@@ -1,0 +1,1 @@
+I installed chromeVox and tested all my html documents and the voice tells me what's on the page.
