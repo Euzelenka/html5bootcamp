@@ -1,0 +1,5 @@
+How could you add weight to the global font definition to win over the classes added by point 3?
+
+
+I added an ID to the body tag to have more weight in the global source definition.
+Id:body

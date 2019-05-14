@@ -1,0 +1,6 @@
+Imagine there is a declaration like class=”oh-no-inline-styles” style=”background:red”
+ and you need to change the background to green without changing the inline style. 
+ How could you accomplish this?
+
+I create a script and with the next line I change the color.
+elem.style.background = 'green';
