@@ -1,0 +1,26 @@
+body {
+    background-color: black;
+}
+
+img {
+    width: 620px;
+    height: 400px;
+    margin: 20px;
+}
+
+header {
+    font-size: 40px;
+    text-align: center;
+    color: azure;
+    text-transform: uppercase;
+}
+
+section {
+    text-align: center;
+    color: bisque;
+}
+
+section#hide {
+    visibility: hidden;
+    color: yellow;
+}
