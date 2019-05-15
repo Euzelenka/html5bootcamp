@@ -1,4 +1,4 @@
-#body * {
+ #body * {
     font-size: 14px; 
     font-family: Verdana, Geneva, Tahoma, sans-serif;  
 }
@@ -9,12 +9,6 @@
 
 :not([class$="r"])[class*="a"] {
     background-color: blue;
-}
-
-header {
-    display: block;
-    text-align: center;
-    background-color: rgb(0, 255, 0);
 }
 
 .header {
@@ -48,6 +42,12 @@ nav {
 aside {
     float: left;
     background-color: rgb(230, 230, 13);
+}
+
+header {
+    display: block;
+    text-align: center;
+    background-color: rgb(0, 255, 0);
 }
 
 footer {
