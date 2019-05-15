@@ -1,0 +1,18 @@
+@media screen and (max-width: 500px) {
+    nav {
+        max-width: 70px;    
+        margin: 0px;
+    }
+    aside {
+        max-width: 70px;
+        margin: 0px;
+    }
+    section {
+        margin: 0px;
+        max-width: 220px;
+    }
+    .header-section,  .footer-section, article{
+        margin: 0px;
+        max-width: 200px;
+    }
+}
