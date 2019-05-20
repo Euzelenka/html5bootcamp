@@ -1,0 +1,120 @@
+body {
+    background-color: black;
+}
+
+table {
+    margin-right: 10px;
+}
+
+* {
+    
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;  
+    color: whitesmoke;
+    margin: 5px;
+}
+
+button, input {
+    color: black;
+}
+
+.header-section {
+    background-color: rgb(99, 99, 99);
+	width: 300;
+	height: 40px;
+	padding: 15px;
+    margin: 15px;
+}
+
+header {
+    display: block;
+    text-align: center;
+    background-color: rgb(28, 28, 66);
+}
+
+main {
+    display: -webkit-flex;
+    display: flex;
+   -webkit-flex-flow: row;
+    flex-flow: row;
+}
+
+article {
+    width: 700px;
+	height: 170px;      
+    padding-top: 30px;
+    padding-right: 15px;
+    padding-left: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color:rgb(29, 102, 102);
+}
+
+nav {
+    font-size: 12px;
+	width: 300px;
+	height: 300px;
+    padding: 10px;
+    padding-top: 15px;
+    margin: 10px;
+    float: left;  
+    background-color:rgb(29, 102, 102);
+}
+
+aside {
+    font-size: 12px;
+	width: 300px;
+	height: 300px;
+    padding: 10px;
+    padding-top: 15px;
+    margin: 10px;
+    float: left;
+    background-color:rgb(29, 102, 102);
+}
+  
+@media screen and (max-width: 500px) {
+    body {
+        margin: 0px;
+        padding: 0px;
+    }
+    .header-body {
+        min-width: 420px;
+    }
+    nav {
+        position: relative;
+        display: flex;
+        max-width: 70px;   
+        min-height: 750px; 
+        margin: 0px;
+    }
+    aside {
+        min-height: 750px;
+        max-width: 70px;
+        margin: 0px;
+        display: flex;
+    }
+    td {
+        font-size: 4px;
+    }
+   table {
+       padding: 0px;
+        margin: 0px;
+        min-width: 200px;
+        max-width: 100px;
+    }
+    article {
+        padding: 0px;
+        max-height: 80px;
+    }
+
+    html {
+        margin: 0px;
+        min-height: 800px;
+        min-width: 450px;
+    }
+    .header-section, article{
+        max-width: 200px;
+    }
+}
+  
