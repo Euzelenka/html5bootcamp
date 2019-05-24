@@ -1,0 +1,17 @@
+{
+  "name": "babel-js",
+  "version": "1.0.0",
+  "description": "Babel js",
+  "main": "{script.js movie.js logger.js actor.js eventEmitter.js}",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "babelify": "^10.0.0",
+    "browserify": "^16.2.3"
+  }
+}
