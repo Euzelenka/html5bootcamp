@@ -2,9 +2,11 @@ const indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexe
 let dataBase = null;
 const db_name = 'DB_text';
 
+window.addEventListener('load', startDB, false);
+
+
 function startDB() {
     dataBase = indexedDB.open(db_name, 3);
-
     dataBase.onupgradeneeded = function () {
         const active = dataBase.result;
         const object = active.createObjectStore("text_area", {keyPath: "id", autoIncrement:true});
@@ -20,14 +22,11 @@ function startDB() {
     };
 }
 
+function save_data(info) {
 
-function save_data(){
-
-    const text_area = document.getElementById('myTxtArea').value;
-    
     //Save the elements in localStorage.
     if (typeof(Storage) !== 'undefined') {
-        localStorage.setItem('text_area', text_area);
+        localStorage.setItem('text_area', info);
 
     } else {
         console.log("LocalStorage no soportado en este navegador");
@@ -38,7 +37,7 @@ function save_data(){
     let active = dataBase.result;
     const data = active.transaction(['text_area'], 'readwrite');
     const object = data.objectStore('text_area');
-    object.add({text:text_area});
+    object.add({text:info});
   
     data.oncomplete = function () {
       console.log('The data has been written successfully');
@@ -47,7 +46,13 @@ function save_data(){
     data.onerror = function () {
       console.log('The data has been written failed');
     }
-    
+}
+
+
+function get_data(){
+
+    const text_area = document.getElementById('myTxtArea').value;
+    save_data(text_area);
 }
 
 
@@ -92,3 +97,53 @@ function delete_data() {
 	        console.log("¡Registro borrado con éxito!");
     };
 }
+
+const dropZone = document.querySelector('#drop_zone');
+ 
+
+    dropZone.addEventListener('dragover', function(evt) { 
+        evt.stopPropagation(); 
+        evt.preventDefault(); 
+           
+    }
+    , false);
+
+    dropZone.addEventListener('drop', function(evt) {
+        evt.stopPropagation();
+        evt.preventDefault();
+        const files = evt.dataTransfer.files; 
+        
+        const reader = new FileReader();
+        reader.readAsText(files[0]);
+        reader.onloadend = function() {
+            
+            dropZone.value = reader.result;
+            save_data(dropZone.value);
+            document.getElementById('list').innerHTML = '<ul>' + dropZone.value + '</ul>';
+          }
+    
+        
+    }
+    , false);
+
+    dropZone.addEventListener('dragleave', function(evt) {
+        if (evt.target.className == "dropzone") {
+            evt.target.style.background = "";
+        }
+      
+      }, false);
+
+      dropZone.addEventListener('dragstart', function(evt) {
+        evt.target.style.opacity = .5;
+      }, false);
+      
+      dropZone.addEventListener('dragend', function(evt) {
+        evt.target.style.opacity = "";
+      }, false);
+        
+
+
+
+
+
+
