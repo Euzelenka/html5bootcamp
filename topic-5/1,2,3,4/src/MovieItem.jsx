@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import star from './star.png';
 import './Style.css';
-
 
 class MovietItem extends Component {
   
   constructor(props) {
     super(props);
 
-    this.state ={isEdit:false}
+    this.state = {isEdit:false,
+                  favTouch:false,
+                  dataFav:''};
+  
     this.editMovie = this.editMovie.bind(this);
     this.editMovieSubmit = this.editMovieSubmit.bind(this);
     this.deleteMovie = this.deleteMovie.bind(this);
+    this.onChangeFav = this.onChangeFav.bind(this);
   }
   
   deleteMovie() {
@@ -30,20 +32,38 @@ class MovietItem extends Component {
     this.setState((prevState,props) => ({
       isEdit : !prevState.isEdit
     }));
-    this.props.editMovieSubmit(id,this.titleInput.value,this.categoryInput.value,this.ratingInput.value);
+    let {isFav} = this.props.movie;
+    if(this.state.favTouch === true) {
+      isFav = this.state.dataFav;
+    }
+    this.props.editMovieSubmit(id,this.titleInput.value,this.categoryInput.value,this.ratingInput.value,isFav);
+  }
+
+  onChangeFav(e) {
+    let fav = e.target.checked;
+    this.setState({favTouch:true});
+    this.setState({dataFav:fav});
   }
 
 render() {
 
-      const {title,category,rating} = this.props.movie;
+      const {title,category,rating,isFav} = this.props.movie;
 
       let i = 0;
       let starArray = [];
       for(i = 1; i <= rating; i++) {
-        starArray.push(<img src={star} key={i} />);
+        starArray.push(
+        <i className="material-icons" key={i} style={{color:'#EBC200'}}>grade</i>
+        );
       }
-
-      return (
+      let fav;
+      if(isFav) {
+        fav = <i className="material-icons" style={{color:'red'}}>favorite</i>;
+      }
+      else {fav = <i className="material-icons">clear</i>;} 
+        
+      
+    return (
 
         this.state.isEdit === true ? 
 
@@ -77,6 +97,16 @@ render() {
                 <option value="5">5</option>
             </select>
           </td>
+              
+          <td>
+            <label> 
+                <input type="checkbox" defaultChecked={isFav} 
+                ref={favInput => this.favInput = favInput}
+                 onChange={this.onChangeFav}
+                /> 
+                <span> Is favorite? </span> 
+              </label>
+          </td>
 
           <td>
             <i className="far fa-save" onClick={this.editMovieSubmit}></i>
@@ -98,6 +128,10 @@ render() {
 
           <td>
             <p>{starArray}</p>
+          </td>
+        
+          <td>
+            <p>{fav}</p>
           </td>
 
           <td>

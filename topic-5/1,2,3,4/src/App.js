@@ -3,10 +3,9 @@ import MovieList from './MovieList.jsx';
 import AddMovie from './AddMovie.jsx';
 
 
-const movieList = [{id:1,title:'Avatar',category:'Science Fiction',rating:5},
-  {id:3,title:'Fast and Furious',category:'Suspense',rating:4},
-  {id:4,title:'The Imitation Game',category:'Drama',rating:4},
-  {id:5,title:'Toy Story',category:'Animation',rating:3}];
+const movieList = [{id:1,title:'Avatar',category:'Science Fiction',rating:5,isFav:false},
+  {id:3,title:'Fast and Furious',category:'Suspense',rating:4,isFav:true},
+  {id:4,title:'The Imitation Game',category:'Drama',rating:4,isFav:true}];
  
   if (localStorage.length === 0) {
     localStorage.setItem("movies", JSON.stringify(movieList));
@@ -36,10 +35,9 @@ class App extends Component {
       );
     }
 
-  addNewMovie(id, title, category, rating) {
-    console.log(title)
+  addNewMovie(id, title, category, rating, isFav) {
     this.setState((prevState, props) => ({
-       movieList: [...prevState.movieList, { id:id + 1,title: title, category: category, rating:rating }]
+       movieList: [...prevState.movieList, { id:id, title: title, category: category, rating:rating, isFav: isFav}]
      }));
      this.setState({formAdd: false});
   }
@@ -50,15 +48,17 @@ class App extends Component {
       this.setState((prevState, props) => ({
         movieList: filteredMovieList
       }));
+      
   }
 
-  editMovieSubmit(id,title, category, rating) {
+  editMovieSubmit(id,title, category, rating, isFav) {
     let movieListCopy = this.state.movieList.map((movie) => {
 
       if (movie.id === id) {
         movie.title = title;
         movie.category = category;
         movie.rating = rating;
+        movie.isFav = isFav;
       }
       return movie;
     });
@@ -72,13 +72,13 @@ setFormMovie() {
   else  
   this.setState({formAdd: false});
 }
-
   render() {
     const isAdd = this.state.formAdd;
     return (
 
       <div className="container-fluid">
-        <div className="row mt-3"><div className="col-lg-12">
+        <div className="row mt-3">
+          <div className="col-lg-12">
           <div className="card">
             <div className="card-header">
               Movie Registry
@@ -90,6 +90,7 @@ setFormMovie() {
                     <th>Title</th>
                     <th>Category</th>
                     <th>Rating</th>
+                    <th>Favorite</th>
                     <th>Edit/Save</th>
                     <th>Delete</th>
                   </tr>
@@ -105,8 +106,9 @@ setFormMovie() {
             </div>
             </div>
           </div>
-        </div>
+        </div>   
       </div>
+      
     );
   }
 }

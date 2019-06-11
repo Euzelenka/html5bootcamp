@@ -10,19 +10,21 @@ class AddMovie extends React.Component {
         title: (this.props) ? this.props.title : "",
         category: (this.props) ? this.props.category : "",
         rating: (this.props) ? this.props.rating : "",
+        isFav: (this.props) ? this.props.isFav : false
       }
     this.addNewMovie = this.addNewMovie.bind(this);
     this.newCategory = this.newCategory.bind(this);
     this.newRating = this.newRating.bind(this);
     this.newTitle = this.newTitle.bind(this);
     this.setFormMovie = this.setFormMovie.bind(this);
+    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     }
 
     addNewMovie(e) {
 
         e.preventDefault();
         if(this.state.title)
-            this.props.addNewMovie(uuid.v4(),this.state.title,this.state.category,this.state.rating);
+            this.props.addNewMovie(uuid.v4(),this.state.title,this.state.category,this.state.rating, this.state.isFav);
 }
 
 newTitle() {
@@ -50,10 +52,17 @@ setFormMovie() {
   this.props.setFormMovie();
 }
 
+handleCheckboxChange() {
+  
+  this.setState({
+      isFav: this.refs.favorite.value
+  });
+}
+
 render() {
     const category = (this.props.id) ? `Choose category.` : "Choose category";
     const rating = (this.props.id) ? `Choose rating.` : "Choose rating";
-
+    
     return (
         <tr className="formAdd">
           <td>
@@ -83,6 +92,17 @@ render() {
                 <option value="5">5</option>
             </select>
           </td>
+          
+          <td>
+          <label> 
+              <input type="checkbox" defaultChecked={false} 
+                ref="favorite"
+                onChange = {this.handleCheckboxChange} 
+              /> 
+              <span> Is favorite? </span> 
+            </label>
+          </td>
+
           <td>
             <button className="btn btn-dark pull-left" onClick={this.addNewMovie} >Add</button>
           </td>

@@ -7,6 +7,7 @@ export default class MovieList extends Component {
         
         const trItem = movies.map( (item,index) => 
               <MovieItem key={index} movie={item} index={index} 
+              
                         editMovieSubmit={this.props.editMovieSubmit} 
                         deleteMovie={this.props.deleteMovie}/>)
       return (
